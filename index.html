@@ -654,28 +654,29 @@
       <p class="form-intro">Complete the form below to secure your child's spot at Summer Camp 2026. All fields marked <span style="color:#ff8a8a">*</span> are required.</p>
 
       <div id="regForm">
+        <form id="campForm" action="https://formspree.io/f/mnjkaqzo" method="POST">
 
         <!-- PARENT INFO -->
         <div class="form-divider"><span>👨‍👩‍👧 Parent / Guardian Information</span></div>
 
         <div class="form-group">
           <label>Name of Parent(s) / Guardian(s) <span class="req">*</span></label>
-          <input type="text" id="parentName" placeholder="e.g. Jean-Paul & Marie Uwimana" required>
+          <input type="text" name="parentName" placeholder="e.g. Jean-Paul & Marie Uwimana" required>
         </div>
 
         <div class="form-group">
           <label>Address <span class="req">*</span></label>
-          <input type="text" id="address" placeholder="District, Sector, Cell — Kigali, Rwanda" required>
+          <input type="text" name="address" placeholder="District, Sector, Cell — Kigali, Rwanda" required>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label>Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" placeholder="+250 7XX XXX XXX" required>
+            <input type="tel" name="phone" placeholder="+250 7XX XXX XXX" required>
           </div>
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" id="email" placeholder="optional@email.com">
+            <input type="email" name="email" placeholder="optional@email.com">
           </div>
         </div>
 
@@ -685,11 +686,11 @@
         <div class="form-row">
           <div class="form-group">
             <label>Name of Child <span class="req">*</span></label>
-            <input type="text" id="childName" placeholder="Full name" required>
+            <input type="text" name="childName" placeholder="Full name" required>
           </div>
           <div class="form-group">
             <label>Age of Child <span class="req">*</span></label>
-            <select id="childAge" required>
+            <select name="childAge" required>
               <option value="" disabled selected>Select age</option>
               <option value="5">5 years — Peewee Shark</option>
               <option value="6">6 years — Peewee Shark</option>
@@ -708,7 +709,7 @@
 
         <div class="form-group">
           <label>Child's Natural Position <span class="req">*</span></label>
-          <select id="position" required>
+          <select name="position" required>
             <option value="" disabled selected>Select position</option>
             <option>Goalkeeper</option>
             <option>Right Back</option>
@@ -744,7 +745,7 @@
 
         <div class="form-group" id="healthDetail" style="display:none">
           <label>Please describe the health condition</label>
-          <textarea id="healthDesc" placeholder="e.g. Asthma, diabetes, heart condition, allergies — please provide details so we can support your child safely."></textarea>
+          <textarea name="healthDesc" placeholder="e.g. Asthma, diabetes, heart condition, allergies — please provide details so we can support your child safely."></textarea>
         </div>
 
         <div class="form-group">
@@ -763,19 +764,18 @@
 
         <div class="form-group" id="disabilityDetail" style="display:none">
           <label>Please describe the physical disability</label>
-          <textarea id="disabilityDesc" placeholder="Provide details so our coaches can ensure appropriate support and accommodations."></textarea>
+          <textarea name="disabilityDesc" placeholder="Provide details so our coaches can ensure appropriate support and accommodations."></textarea>
         </div>
 
         <div class="form-group">
           <label>Additional Notes (Optional)</label>
-          <textarea id="notes" placeholder="Any other information you'd like us to know about your child…"></textarea>
+          <textarea name="notes" placeholder="Any other information you'd like us to know about your child…"></textarea>
         </div>
 
-        <button class="submit-btn" onclick="submitForm()"><i data-lucide="send" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;"></i> REGISTER NOW</button>
+        <input type="hidden" name="_subject" value="New Summer Camp 2026 Registration">
+        <button class="submit-btn" type="submit"><i data-lucide="send" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;"></i> REGISTER NOW</button>
 
-        <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.4); margin-top:14px;">
-          After registering, complete your payment using the details below and send confirmation to <span style="color:var(--gold-light)">info.royalsportsfc@gmail.com</span>
-        </p>
+        </form>
       </div>
 
       <!-- SUCCESS STATE -->
@@ -841,19 +841,20 @@
     });
   });
 
-  function submitForm() {
+  document.getElementById('campForm').addEventListener('submit', function(e) {
     const required = [
-      { id: 'parentName', label: 'Name of Parent(s)' },
-      { id: 'address',    label: 'Address' },
-      { id: 'phone',      label: 'Phone Number' },
-      { id: 'childName',  label: 'Name of Child' },
-      { id: 'childAge',   label: 'Age of Child' },
-      { id: 'position',   label: "Child's Position" },
+      { name: 'parentName', label: 'Name of Parent(s)' },
+      { name: 'address',    label: 'Address' },
+      { name: 'phone',      label: 'Phone Number' },
+      { name: 'childName',  label: 'Name of Child' },
+      { name: 'childAge',   label: 'Age of Child' },
+      { name: 'position',   label: "Child's Position" },
     ];
 
     for (const f of required) {
-      const el = document.getElementById(f.id);
+      const el = this.querySelector(`[name="${f.name}"]`);
       if (!el.value.trim()) {
+        e.preventDefault();
         el.focus();
         el.style.borderColor = '#ff6b6b';
         setTimeout(() => el.style.borderColor = '', 2000);
@@ -863,17 +864,11 @@
     }
 
     const hc = document.querySelector('input[name="healthCondition"]:checked');
-    if (!hc) { alert('Please answer: Does your child have any underlying health condition?'); return; }
+    if (!hc) { e.preventDefault(); alert('Please answer: Does your child have any underlying health condition?'); return; }
 
     const dis = document.querySelector('input[name="disability"]:checked');
-    if (!dis) { alert('Please answer: Does your child have any physical disability?'); return; }
-
-    // Show success
-    document.getElementById('regForm').style.display = 'none';
-    const s = document.getElementById('successMsg');
-    s.style.display = 'block';
-    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+    if (!dis) { e.preventDefault(); alert('Please answer: Does your child have any physical disability?'); return; }
+  });
 </script>
 <script>lucide.createIcons();</script>
 </body>
