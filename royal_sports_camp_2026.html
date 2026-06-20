@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Camp 2026 – Royal Sports Football Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  :root {
+    --maroon: #6B0A1A;
+    --maroon-dark: #4A0510;
+    --maroon-mid: #8B1020;
+    --gold: #C9A227;
+    --gold-light: #F0C84A;
+    --gold-pale: #FFF3C0;
+    --cream: #FDF8EE;
+    --text-dark: #1a0a00;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--maroon-dark);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--maroon-dark) 0%, var(--maroon) 40%, #3a0008 100%);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 16px 20px 20px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 18px,
+      rgba(201,162,39,0.07) 18px,
+      rgba(201,162,39,0.07) 20px
+    );
+  }
+  .rays {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 100%;
+    background: conic-gradient(
+      from 270deg at 50% 0%,
+      transparent 0deg,
+      rgba(201,162,39,0.10) 10deg,
+      transparent 20deg,
+      rgba(201,162,39,0.10) 30deg,
+      transparent 40deg,
+      rgba(201,162,39,0.10) 50deg,
+      transparent 60deg,
+      rgba(201,162,39,0.08) 70deg,
+      transparent 80deg
+    );
+    pointer-events: none;
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+
+  /* Shield logo */
+  .shield {
+    width: 70px;
+    height: 85px;
+    margin: 0 auto 8px;
+    position: relative;
+  }
+  .shield svg { width: 100%; height: 100%; drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
+
+  .academy-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 10vw, 60px);
+    line-height: 0.9;
+    letter-spacing: 1px;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 60%, #a07a10 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
+    margin-bottom: 0;
+  }
+
+  .hero-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 12vw, 72px);
+    line-height: 0.85;
+    background: linear-gradient(180deg, #fff 0%, var(--gold-light) 40%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.7));
+    letter-spacing: -2px;
+  }
+
+  .hero-location {
+    display: inline-block;
+    background: var(--maroon-dark);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 5px 16px;
+    margin: 8px 0 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+
+  .hero-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    color: var(--gold-light);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--maroon-dark), var(--gold), var(--gold-light), var(--gold), var(--maroon-dark));
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 14px 20px;
+  }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: var(--gold-light);
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* ── AGE GROUPS ── */
+  .age-section { background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%); }
+
+  .age-groups {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .age-card {
+    flex: 1 1 180px;
+    max-width: 180px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    text-align: center;
+    border: 1.5px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  .age-card.peewee { background: linear-gradient(145deg, #5a0814, #8B1020); }
+  .age-card.junior { background: linear-gradient(145deg, #7a6a00, #C9A227); color: var(--maroon-dark); }
+  .age-card.elite  { background: linear-gradient(145deg, #5a0814, #8B1020); }
+
+  .age-card .badge {
+    font-size: 20px;
+    margin-bottom: 2px;
+  }
+  .age-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .age-card.junior h3 { color: var(--maroon-dark); }
+  .age-card p { font-size: 10px; font-weight: 600; opacity: 0.85; }
+  .age-card.junior p { color: var(--maroon-dark); }
+
+  /* ── ACTIVITIES ── */
+  .activities-section { background: var(--maroon-dark); }
+
+  .activities-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .activity-pill {
+    background: rgba(201,162,39,0.15);
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    padding: 5px 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0px;
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .activity-pill .icon { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ── FEES ── */
+  .fees-section {
+    background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+  }
+  .fee-box {
+    background: var(--maroon-dark);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 10px;
+  }
+  .fee-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .fee-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+  .fee-note {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+  }
+  .includes-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 5px;
+  }
+  .includes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+  }
+  .includes-list span {
+    background: rgba(201,162,39,0.15);
+    border: 1px solid rgba(201,162,39,0.4);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    color: var(--cream);
+  }
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-section { background: var(--maroon-dark); }
+  .disclaimer-box {
+    background: rgba(201,162,39,0.08);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 8px 12px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: var(--cream);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .disclaimer-box strong { color: var(--gold-light); font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+
+  /* ── FORM ── */
+  .form-section {
+    background: linear-gradient(145deg, var(--maroon-dark) 0%, #2a0008 100%);
+    padding: 16px 20px;
+  }
+
+  .form-box {
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(201,162,39,0.4);
+    border-radius: 10px;
+    padding: 14px 16px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .form-intro {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .form-group {
+    margin-bottom: 8px;
+  }
+  .form-group label {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: var(--gold-light);
+    margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .form-group label .req { color: #ff8a8a; margin-left: 2px; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(201,162,39,0.35);
+    border-radius: 5px;
+    padding: 6px 10px;
+    color: var(--white);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,162,39,0.08);
+  }
+  .form-group select option { background: var(--maroon-dark); color: white; }
+  .form-group textarea { resize: vertical; min-height: 50px; }
+
+  .form-row { display: flex; gap: 8px; }
+  .form-row .form-group { flex: 1; }
+
+  .radio-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .radio-option {
+    flex: 1;
+    min-width: 100px;
+  }
+  .radio-option input[type="radio"] { display: none; }
+  .radio-option label {
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    border: 1px solid rgba(201,162,39,0.35);
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .radio-option input[type="radio"]:checked + label {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--maroon-dark);
+    font-weight: 700;
+  }
+
+  /* Field hint */
+  .field-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 5px;
+  }
+
+  /* Form section divider */
+  .form-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 6px;
+  }
+  .form-divider::before, .form-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201,162,39,0.3);
+  }
+  .form-divider span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--maroon-dark);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(201,162,39,0.4);
+  }
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,162,39,0.55);
+  }
+  .submit-btn:active { transform: translateY(0); }
+
+  /* ── PAYMENT ── */
+  .payment-section {
+    background: var(--maroon);
+    padding: 14px 20px;
+  }
+  .payment-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0;
+  }
+  .payment-card {
+    flex: 1 1 220px;
+    max-width: 240px;
+    background: rgba(0,0,0,0.25);
+    border: 1.5px solid var(--gold);
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+  }
+  .payment-card .p-icon { font-size: 24px; margin-bottom: 4px; }
+  .payment-card h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .payment-card .p-detail {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  .payment-card .p-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 4px;
+  }
+  .payment-note {
+    max-width: 600px;
+    margin: 8px auto 0;
+    text-align: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+  }
+  .payment-note a { color: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--maroon-dark);
+    border-top: 2px solid var(--gold);
+    text-align: center;
+    padding: 10px 20px;
+  }
+  footer .f-contact {
+    font-family: 'Oswald', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 2px;
+  }
+  footer .f-contact a { color: var(--gold-light); text-decoration: none; }
+  footer .f-website {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .success-msg .s-icon { font-size: 56px; margin-bottom: 14px; }
+  .success-msg h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .success-msg p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+  /* soccer ball decoration */
+  .ball-row {
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 8px;
+    color: rgba(201,162,39,0.3);
+    padding: 4px 0;
+  }
+
+  @media (max-width: 500px) {
+    .form-row { flex-direction: column; }
+    .form-box { padding: 24px 16px; }
+    .age-card { max-width: 100%; }
+    .fee-amount { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<header class="hero">
+  <div class="rays"></div>
+  <div class="hero-inner">
+
+    <!-- Shield Logo SVG -->
+    <div class="shield">
+      <svg viewBox="0 0 110 130" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#C9A227"/>
+            <stop offset="100%" style="stop-color:#8B6B00"/>
+          </linearGradient>
+          <filter id="shadow"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.6"/></filter>
+        </defs>
+        <!-- Shield shape -->
+        <path d="M55 5 L100 22 L100 72 Q100 108 55 125 Q10 108 10 72 L10 22 Z" fill="url(#sg)" filter="url(#shadow)"/>
+        <path d="M55 12 L94 27 L94 72 Q94 103 55 118 Q16 103 16 72 L16 27 Z" fill="#6B0A1A"/>
+        <!-- Stripes -->
+        <rect x="16" y="27" width="26" height="10" fill="#C9A227" opacity="0.9"/>
+        <rect x="68" y="27" width="26" height="10" fill="#C9A227" opacity="0.9"/>
+        <rect x="16" y="47" width="26" height="10" fill="#C9A227" opacity="0.9"/>
+        <rect x="68" y="47" width="26" height="10" fill="#C9A227" opacity="0.9"/>
+        <!-- Soccer ball -->
+        <circle cx="55" cy="72" r="20" fill="white" opacity="0.95"/>
+        <circle cx="55" cy="72" r="20" fill="none" stroke="#000" stroke-width="1"/>
+        <!-- Pentagons simplified -->
+        <polygon points="55,56 61,61 59,68 51,68 49,61" fill="#1a1a1a"/>
+        <polygon points="42,65 47,60 52,64 51,71 45,72" fill="#1a1a1a"/>
+        <polygon points="68,65 63,60 58,64 59,71 65,72" fill="#1a1a1a"/>
+        <polygon points="47,80 45,73 51,71 59,74 57,82" fill="#1a1a1a"/>
+        <polygon points="63,80 65,73 59,71 51,74 53,82" fill="#1a1a1a"/>
+        <!-- Laurel text area -->
+        <text x="55" y="104" text-anchor="middle" font-family="Oswald, sans-serif" font-size="5.5" fill="#C9A227" font-weight="700" letter-spacing="0.5">ROYAL SPORTS</text>
+        <text x="55" y="112" text-anchor="middle" font-family="Oswald, sans-serif" font-size="5" fill="#C9A227" letter-spacing="0.3">FOOTBALL ACADEMY</text>
+      </svg>
+    </div>
+
+    <p class="academy-name">Royal Sports Football Academy</p>
+    <div class="hero-title">SUMMER<br>CAMP</div>
+    <div class="hero-year">2026</div>
+    <div class="hero-location"><i data-lucide="map-pin" style="width:15px;height:15px;vertical-align:middle;margin-right:5px;"></i> JULY 2026 — KIGALI, RWANDA</div>
+    <p class="hero-date"><i data-lucide="calendar-days" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;"></i> Start Date: July 6, 2026 &nbsp;|&nbsp; Duration: 4 Weeks</p>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ══════════ AGE GROUPS ══════════ -->
+<section class="age-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="users" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> AGE GROUPS (5–15 YEARS)</div>
+    <div class="age-groups">
+      <div class="age-card peewee">
+        <div class="badge"><i data-lucide="zap" style="width:28px;height:28px;"></i></div>
+        <h3>PEEWEE<br>SHARK</h3>
+        <p>Aged 5–7</p>
+      </div>
+      <div class="age-card junior">
+        <div class="badge"><i data-lucide="shield" style="width:28px;height:28px;"></i></div>
+        <h3>JUNIOR<br>LIONS</h3>
+        <p>Aged 8–10</p>
+      </div>
+      <div class="age-card elite">
+        <div class="badge"><i data-lucide="award" style="width:28px;height:28px;"></i></div>
+        <h3>ELITE<br>FALCONS</h3>
+        <p>Aged 11–15</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ ACTIVITIES ══════════ -->
+<section class="activities-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="trophy" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> ACTIVITIES &amp; BENEFITS</div>
+    <div class="activities-grid">
+      <div class="activity-pill"><span class="icon"><i data-lucide="target" class="icon"></i> Expert Coaching</div>
+      <div class="activity-pill"><span class="icon"><i data-lucide="zap" class="icon"></i> Skill Development</div>
+      <div class="activity-pill"><span class="icon"><i data-lucide="heart-pulse" class="icon"></i> Fitness &amp; Teamwork</div>
+      <div class="activity-pill"><span class="icon"><i data-lucide="circle-dot" class="icon"></i> Fun Matches</div>
+      <div class="activity-pill"><span class="icon"><i data-lucide="salad" class="icon"></i> Healthy Lunch &amp; Snacks</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ FEES ══════════ -->
+<section class="fees-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="badge-dollar-sign" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> REGISTRATION FEE</div>
+    <div class="fee-box">
+      <p class="fee-label">One-Time Payment</p>
+      <div class="fee-amount">RWF 150,000</div>
+      <p class="fee-note">Covers the full 4-week programme</p>
+    </div>
+    <p class="includes-title" style="text-align:center; margin-bottom: 12px;">INCLUDES</p>
+    <div class="includes-list">
+      <span><i data-lucide="check-circle" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;color:var(--gold-light);"></i> Complete Jersey (Top, Shorts, Socks)</span>
+      <span><i data-lucide="check-circle" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;color:var(--gold-light);"></i> Training Bibs</span>
+      <span><i data-lucide="check-circle" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;color:var(--gold-light);"></i> Drawstring Bag</span>
+      <span><i data-lucide="check-circle" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;color:var(--gold-light);"></i> Water Bottle</span>
+      <span><i data-lucide="check-circle" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;color:var(--gold-light);"></i> Certificate of Completion</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DISCLAIMER ══════════ -->
+<section class="disclaimer-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="clipboard-list" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> ABOUT THE CAMP</div>
+    <div class="disclaimer-box">
+      <strong>DISCLAIMER:</strong><br>
+      This summer camp will help your child develop a strong understanding of the basics of football, including: <strong>passing</strong>, <strong>positioning</strong>, <strong>shooting</strong>, <strong>safe tackling</strong>, and <strong>fitness</strong>. All sessions are conducted in a safe, supportive, and fun environment designed to build confidence alongside football skills.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════ REGISTRATION FORM ══════════ -->
+<section class="form-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="clipboard-pen" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> REGISTER YOUR CHILD</div>
+
+    <div class="form-box">
+      <p class="form-intro">Complete the form below to secure your child's spot at Summer Camp 2026. All fields marked <span style="color:#ff8a8a">*</span> are required.</p>
+
+      <div id="regForm">
+
+        <!-- PARENT INFO -->
+        <div class="form-divider"><span>👨‍👩‍👧 Parent / Guardian Information</span></div>
+
+        <div class="form-group">
+          <label>Name of Parent(s) / Guardian(s) <span class="req">*</span></label>
+          <input type="text" id="parentName" placeholder="e.g. Jean-Paul & Marie Uwimana" required>
+        </div>
+
+        <div class="form-group">
+          <label>Address <span class="req">*</span></label>
+          <input type="text" id="address" placeholder="District, Sector, Cell — Kigali, Rwanda" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" placeholder="+250 7XX XXX XXX" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="optional@email.com">
+          </div>
+        </div>
+
+        <!-- CHILD INFO -->
+        <div class="form-divider"><span>⚽ Child's Information</span></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name of Child <span class="req">*</span></label>
+            <input type="text" id="childName" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label>Age of Child <span class="req">*</span></label>
+            <select id="childAge" required>
+              <option value="" disabled selected>Select age</option>
+              <option value="5">5 years — Peewee Shark</option>
+              <option value="6">6 years — Peewee Shark</option>
+              <option value="7">7 years — Peewee Shark</option>
+              <option value="8">8 years — Junior Lions</option>
+              <option value="9">9 years — Junior Lions</option>
+              <option value="10">10 years — Junior Lions</option>
+              <option value="11">11 years — Elite Falcons</option>
+              <option value="12">12 years — Elite Falcons</option>
+              <option value="13">13 years — Elite Falcons</option>
+              <option value="14">14 years — Elite Falcons</option>
+              <option value="15">15 years — Elite Falcons</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Child's Natural Position <span class="req">*</span></label>
+          <select id="position" required>
+            <option value="" disabled selected>Select position</option>
+            <option>Goalkeeper</option>
+            <option>Right Back</option>
+            <option>Centre Back</option>
+            <option>Left Back</option>
+            <option>Defensive Midfielder</option>
+            <option>Central Midfielder</option>
+            <option>Attacking Midfielder</option>
+            <option>Right Winger</option>
+            <option>Left Winger</option>
+            <option>Striker / Centre Forward</option>
+            <option>Not Sure Yet</option>
+          </select>
+          <p class="field-hint">Select the position your child naturally plays or is most comfortable in.</p>
+        </div>
+
+        <!-- HEALTH INFO -->
+        <div class="form-divider"><span><i data-lucide="stethoscope" style="width:14px;height:14px;vertical-align:middle;margin-right:5px;"></i> Health &amp; Medical Information</span></div>
+
+        <div class="form-group">
+          <label>Does your child have any underlying health condition? <span class="req">*</span></label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="healthCondition" id="hcYes" value="Yes">
+              <label for="hcYes">Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="healthCondition" id="hcNo" value="No">
+              <label for="hcNo">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="healthDetail" style="display:none">
+          <label>Please describe the health condition</label>
+          <textarea id="healthDesc" placeholder="e.g. Asthma, diabetes, heart condition, allergies — please provide details so we can support your child safely."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Does your child have any physical disability? <span class="req">*</span></label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="disability" id="disYes" value="Yes">
+              <label for="disYes">Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="disability" id="disNo" value="No">
+              <label for="disNo">No</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="disabilityDetail" style="display:none">
+          <label>Please describe the physical disability</label>
+          <textarea id="disabilityDesc" placeholder="Provide details so our coaches can ensure appropriate support and accommodations."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Notes (Optional)</label>
+          <textarea id="notes" placeholder="Any other information you'd like us to know about your child…"></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()"><i data-lucide="send" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;"></i> REGISTER NOW</button>
+
+        <p style="text-align:center; font-size:12px; color:rgba(255,255,255,0.4); margin-top:14px;">
+          After registering, complete your payment using the details below and send confirmation to <span style="color:var(--gold-light)">info.royalsportsfc@gmail.com</span>
+        </p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-msg" id="successMsg">
+        <div class="s-icon"><i data-lucide="trophy" style="width:56px;height:56px;color:var(--gold-light);"></i></div>
+        <h3>REGISTRATION RECEIVED!</h3>
+        <p>Thank you for registering! Please complete your payment of <strong style="color:var(--gold-light)">RWF 150,000</strong> using the details below, then send your payment confirmation to <strong style="color:var(--gold-light)">info.royalsportsfc@gmail.com</strong>.<br><br>
+        We look forward to welcoming your child to Summer Camp 2026 — Kigali, Rwanda! ⚽</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PAYMENT ══════════ -->
+<section class="payment-section">
+  <div class="section-inner">
+    <div class="section-title"><i data-lucide="credit-card" style="width:22px;height:22px;vertical-align:middle;margin-right:8px;"></i> PAYMENT METHODS</div>
+    <div class="payment-grid">
+      <div class="payment-card">
+        <div class="p-icon"><i data-lucide="smartphone" style="width:36px;height:36px;color:var(--gold-light);"></i></div>
+        <h4>Mobile Money</h4>
+        <div class="p-detail">0790 134 549</div>
+        <p class="p-sub">MTN MoMo / Airtel Money</p>
+      </div>
+      <div class="payment-card">
+        <div class="p-icon"><i data-lucide="landmark" style="width:36px;height:36px;color:var(--gold-light);"></i></div>
+        <h4>Bank Transfer</h4>
+        <div class="p-detail">4492543589</div>
+        <p class="p-sub">BPR Bank Rwanda</p>
+      </div>
+    </div>
+    <p class="payment-note">
+      After payment, please send your proof of payment (screenshot or receipt) to<br>
+      <a href="mailto:info.royalsportsfc@gmail.com">info.royalsportsfc@gmail.com</a> with your child's name as the subject line.
+    </p>
+  </div>
+</section>
+
+<div class="ball-row"><i data-lucide="circle-dot" style="width:18px;height:18px;opacity:0.4;"></i> <i data-lucide="circle-dot" style="width:18px;height:18px;opacity:0.4;"></i> <i data-lucide="circle-dot" style="width:18px;height:18px;opacity:0.4;"></i> <i data-lucide="circle-dot" style="width:18px;height:18px;opacity:0.4;"></i> <i data-lucide="circle-dot" style="width:18px;height:18px;opacity:0.4;"></i></div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p class="f-contact"><i data-lucide="mail" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;"></i> <a href="mailto:info.royalsportsfc@gmail.com">info.royalsportsfc@gmail.com</a> &nbsp;|&nbsp; <i data-lucide="phone" style="width:13px;height:13px;vertical-align:middle;margin-right:4px;"></i> <a href="tel:+250791685555">+250 791 685 555</a></p>
+  <p class="f-website">WWW.ROYALSPORTSFOOTBALLACADEMY.COM</p>
+  <p style="font-size:11px; color:rgba(255,255,255,0.3); margin-top:12px;">© 2026 Royal Sports Football Academy · Kigali, Rwanda</p>
+</footer>
+
+<script>
+  // Show/hide health detail
+  document.querySelectorAll('input[name="healthCondition"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('healthDetail').style.display =
+        r.value === 'Yes' ? 'block' : 'none';
+    });
+  });
+
+  // Show/hide disability detail
+  document.querySelectorAll('input[name="disability"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('disabilityDetail').style.display =
+        r.value === 'Yes' ? 'block' : 'none';
+    });
+  });
+
+  function submitForm() {
+    const required = [
+      { id: 'parentName', label: 'Name of Parent(s)' },
+      { id: 'address',    label: 'Address' },
+      { id: 'phone',      label: 'Phone Number' },
+      { id: 'childName',  label: 'Name of Child' },
+      { id: 'childAge',   label: 'Age of Child' },
+      { id: 'position',   label: "Child's Position" },
+    ];
+
+    for (const f of required) {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        el.focus();
+        el.style.borderColor = '#ff6b6b';
+        setTimeout(() => el.style.borderColor = '', 2000);
+        alert(`Please fill in: ${f.label}`);
+        return;
+      }
+    }
+
+    const hc = document.querySelector('input[name="healthCondition"]:checked');
+    if (!hc) { alert('Please answer: Does your child have any underlying health condition?'); return; }
+
+    const dis = document.querySelector('input[name="disability"]:checked');
+    if (!dis) { alert('Please answer: Does your child have any physical disability?'); return; }
+
+    // Show success
+    document.getElementById('regForm').style.display = 'none';
+    const s = document.getElementById('successMsg');
+    s.style.display = 'block';
+    s.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
